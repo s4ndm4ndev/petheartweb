@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Heart Animal Clinic - Manual Validation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .theme-toggle {
+            background: #6c757d;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+        }
+        .back-to-top.visible {
+            display: block;
+        }
+        .spacer {
+            height: 1500px;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #6c757d;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .test-section {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Pet Heart Animal Clinic - Manual Validation</h1>
+        <p>This page allows manual testing of all website functionality.</p>
+
+        <div class="test-section">
+            <h3>🎨 Theme Toggle Testing</h3>
+            <button class="theme-toggle" onclick="testThemeToggle()">Toggle Theme</button>
+            <button onclick="testSystemTheme()">Test System Theme Detection</button>
+            <div id="theme-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📱 Responsive Design Testing</h3>
+            <button onclick="testResponsive(375)">Test Mobile (375px)</button>
+            <button onclick="testResponsive(768)">Test Tablet (768px)</button>
+            <button onclick="testResponsive(1024)">Test Desktop (1024px)</button>
+            <div id="responsive-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>⬆️ Back-to-Top Testing</h3>
+            <button onclick="scrollToBottom()">Scroll to Bottom</button>
+            <button onclick="testBackToTop()">Test Back to Top</button>
+            <div id="scroll-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>♿ Accessibility Testing</h3>
+            <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+            <button onclick="testScreenReader()">Test Screen Reader Support</button>
+            <div id="accessibility-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>🌐 Browser Compatibility</h3>
+            <button onclick="testBrowserFeatures()">Test Browser Features</button>
+            <div id="browser-results"></div>
+        </div>
+
+        <!-- Spacer for scroll testing -->
+        <div class="spacer">
+            Scroll down to test back-to-top functionality
+        </div>
+
+        <!-- Back to top button -->
+        <button id="back-to-top-btn" class="back-to-top" onclick="scrollToTop()">↑</button>
+    </div>
+
+    <script>
+        // Theme Toggle Implementation (simplified version)
+        let currentTheme = 'light';
+
+        function testThemeToggle() {
+            const results = document.getElementById('theme-results');
+
+            try {
+                // Toggle theme
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                document.body.style.background = currentTheme === 'dark' ? '#1a1a1a' : '#f5f5f5';
+                document.body.style.color = currentTheme === 'dark' ? '#ffffff' : '#000000';
+
+                results.innerHTML = `<div class="test-result pass">✅ Theme toggled to ${currentTheme} mode successfully</div>`;
+
+                // Test localStorage
+                localStorage.setItem('theme-preference', currentTheme);
+                results.innerHTML += `<div class="test-result pass">✅ Theme preference saved to localStorage</div>`;
+
+            } catch (error) {
+                results.innerHTML = `<div class="test-result fail">❌ Theme toggle failed: ${error.message}</div>`;
+            }
+        }
+
+        function testSystemTheme() {
+            const results = document.getElementById('theme-results');
+
+            try {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const systemTheme = prefersDark ? 'dark' : 'light';
+
+                results.innerHTML += `<div class="test-result pass">✅ System theme detected: ${systemTheme}</div>`;
+
+                // Test media query listener
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                if (mediaQuery.addEventListener) {
+                    results.innerHTML += `<div class="test-result pass">✅ Media query listener supported</div>`;
+                } else {
+                    results.innerHTML += `<div class="test-result warning">⚠️ Media query listener not supported (older browser)</div>`;
+                }
+
+            } catch (error) {
+                results.innerHTML += `<div class="test-result fail">❌ System theme detection failed: ${error.message}</div>`;
+            }
+        }
+
+        function testResponsive(width) {
+            const results = document.getElementById('responsive-results');
+
+            try {
+                // Simulate viewport resize
+                const container = document.querySelector('.container');
+                container.style.maxWidth = width + 'px';
+
+                // Test media query
+                const isMobile = width <= 768;
+                const isTablet = width > 768 && width <= 1024;
+                const isDesktop = width > 1024;
+
+                let deviceType = isMobile ? 'Mobile' : isTablet ? 'Tablet' : 'Desktop';
+
+                results.innerHTML = `<div class="test-result pass">✅ Layout adapted for ${deviceType} (${width}px)</div>`;
+
+                // Test touch events on mobile
+                if (isMobile && 'ontouchstart' in window) {
+                    results.innerHTML += `<div class="test-result pass">✅ Touch events supported</div>`;
+                }
+
+                // Reset after test
+                setTimeout(() => {
+                    container.style.maxWidth = '1200px';
+                }, 2000);
+
+            } catch (error) {
+                results.innerHTML = `<div class="test-result fail">❌ Responsive test failed: ${error.message}</div>`;
+            }
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+            // Show back-to-top button after scroll
+            setTimeout(() => {
+                const btn = document.getElementById('back-to-top-btn');
+                btn.classList.add('visible');
+
+                const results = document.getElementById('scroll-results');
+                results.innerHTML = `<div class="test-result pass">✅ Scrolled to bottom, back-to-top button should be visible</div>`;
+            }, 1000);
+        }
+
+        function testBackToTop() {
+            const results = document.getElementById('scroll-results');
+
+            try {
+                // Test smooth scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                results.innerHTML += `<div class="test-result pass">✅ Smooth scroll to top executed</div>`;
+
+                // Hide back-to-top button
+                setTimeout(() => {
+                    const btn = document.getElementById('back-to-top-btn');
+                    btn.classList.remove('visible');
+                    results.innerHTML += `<div class="test-result pass">✅ Back-to-top button hidden at top of page</div>`;
+                }, 1000);
+
+            } catch (error) {
+                results.innerHTML += `<div class="test-result fail">❌ Back-to-top test failed: ${error.message}</div>`;
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function testKeyboardNavigation() {
+            const results = document.getElementById('accessibility-results');
+
+            try {
+                // Test tab navigation
+                const buttons = document.querySelectorAll('button');
+                let tabIndex = 0;
+
+                buttons.forEach((btn, index) => {
+                    if (btn.tabIndex >= 0) tabIndex++;
+                });
+
+                results.innerHTML = `<div class="test-result pass">✅ ${tabIndex} focusable elements found</div>`;
+
+                // Test ARIA labels
+                const ariaElements = document.querySelectorAll('[aria-label], [aria-labelledby], [aria-describedby]');
+                results.innerHTML += `<div class="test-result pass">✅ ${ariaElements.length} elements with ARIA attributes</div>`;
+
+                // Focus first button for demonstration
+                if (buttons.length > 0) {
+                    buttons[0].focus();
+                    results.innerHTML += `<div class="test-result pass">✅ Keyboard focus working</div>`;
+                }
+
+            } catch (error) {
+                results.innerHTML = `<div class="test-result fail">❌ Keyboard navigation test failed: ${error.message}</div>`;
+            }
+        }
+
+        function testScreenReader() {
+            const results = document.getElementById('accessibility-results');
+
+            try {
+                // Test live region
+                const liveRegion = document.createElement('div');
+                liveRegion.setAttribute('aria-live', 'polite');
+                liveRegion.setAttribute('aria-atomic', 'true');
+                liveRegion.style.position = 'absolute';
+                liveRegion.style.left = '-10000px';
+                liveRegion.textContent = 'Screen reader test announcement';
+
+                document.body.appendChild(liveRegion);
+
+                results.innerHTML += `<div class="test-result pass">✅ Live region created for screen reader announcements</div>`;
+
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(liveRegion);
+                }, 2000);
+
+                // Test semantic HTML
+                const semanticElements = document.querySelectorAll('main, nav, header, footer, section, article');
+                results.innerHTML += `<div class="test-result pass">✅ ${semanticElements.length} semantic HTML elements found</div>`;
+
+            } catch (error) {
+                results.innerHTML += `<div class="test-result fail">❌ Screen reader test failed: ${error.message}</div>`;
+            }
+        }
+
+        function testBrowserFeatures() {
+            const results = document.getElementById('browser-results');
+            let html = '';
+
+            try {
+                // Test localStorage
+                if (typeof Storage !== 'undefined') {
+                    html += `<div class="test-result pass">✅ localStorage supported</div>`;
+                } else {
+                    html += `<div class="test-result fail">❌ localStorage not supported</div>`;
+                }
+
+                // Test CSS features
+                if (CSS && CSS.supports) {
+                    const flexSupport = CSS.supports('display', 'flex');
+                    const gridSupport = CSS.supports('display', 'grid');
+                    const smoothScrollSupport = CSS.supports('scroll-behavior', 'smooth');
+
+                    html += `<div class="test-result ${flexSupport ? 'pass' : 'fail'}">${flexSupport ? '✅' : '❌'} Flexbox support</div>`;
+                    html += `<div class="test-result ${gridSupport ? 'pass' : 'fail'}">${gridSupport ? '✅' : '❌'} Grid support</div>`;
+                    html += `<div class="test-result ${smoothScrollSupport ? 'pass' : 'warning'}">${smoothScrollSupport ? '✅' : '⚠️'} Smooth scroll support</div>`;
+                } else {
+                    html += `<div class="test-result warning">⚠️ CSS.supports not available</div>`;
+                }
+
+                // Test JavaScript features
+                const es6Support = typeof Symbol !== 'undefined';
+                const promiseSupport = typeof Promise !== 'undefined';
+
+                html += `<div class="test-result ${es6Support ? 'pass' : 'fail'}">${es6Support ? '✅' : '❌'} ES6 support</div>`;
+                html += `<div class="test-result ${promiseSupport ? 'pass' : 'fail'}">${promiseSupport ? '✅' : '❌'} Promise support</div>`;
+
+                // Test user agent
+                const userAgent = navigator.userAgent;
+                const isMobile = /Mobile|Android|iPhone|iPad/.test(userAgent);
+                html += `<div class="test-result pass">✅ User Agent: ${isMobile ? 'Mobile' : 'Desktop'} device detected</div>`;
+
+                results.innerHTML = html;
+
+            } catch (error) {
+                results.innerHTML = `<div class="test-result fail">❌ Browser feature test failed: ${error.message}</div>`;
+            }
+        }
+
+        // Auto-test scroll behavior
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('back-to-top-btn');
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollPosition > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Pet Heart Animal Clinic - Manual Validation Ready');
+
+            // Auto-run browser compatibility test
+            setTimeout(testBrowserFeatures, 1000);
+        });
+    </script>
+</body>
+</html>

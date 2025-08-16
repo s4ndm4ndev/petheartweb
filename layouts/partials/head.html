@@ -1,0 +1,59 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Comprehensive SEO Meta Tags -->
+{{ partial "seo-meta.html" . }}
+
+<!-- Critical CSS for above-the-fold content -->
+{{ if hugo.IsProduction }}
+{{ partial "critical-css.html" . }}
+{{ end }}
+
+<!-- Resource Hints for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+<!-- Favicon and Brand Assets -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Theme and Brand Colors -->
+<meta name="theme-color" content="#87CEEB" />
+<meta name="msapplication-TileColor" content="#87CEEB" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Pet Heart" />
+
+<!-- Critical CSS (inlined for performance) -->
+{{ $css := resources.Get "css/main.scss" | css.Sass }}
+{{ if hugo.IsProduction }}
+  {{ $css = $css | resources.Minify | resources.Fingerprint }}
+{{ end }}
+<link rel="stylesheet" href="{{ $css.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $css.Data.Integrity }}"{{ end }} />
+
+<!-- Preload critical JavaScript -->
+{{ $themeToggleJS := resources.Get "js/theme-toggle.js" }}
+{{ if hugo.IsProduction }}
+  {{ $themeToggleJS = $themeToggleJS | resources.Minify | resources.Fingerprint }}
+{{ end }}
+<link rel="preload" href="{{ $themeToggleJS.Permalink }}" as="script" />
+<script src="{{ $themeToggleJS.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $themeToggleJS.Data.Integrity }}"{{ end }}></script>
+
+<!-- Non-critical JavaScript with defer -->
+{{ $backToTopJS := resources.Get "js/back-to-top.js" }}
+{{ if hugo.IsProduction }}
+  {{ $backToTopJS = $backToTopJS | resources.Minify | resources.Fingerprint }}
+{{ end }}
+<script src="{{ $backToTopJS.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $backToTopJS.Data.Integrity }}"{{ end }} defer></script>
+
+{{ $js := resources.Get "js/main.js" }}
+{{ if hugo.IsProduction }}
+  {{ $js = $js | resources.Minify | resources.Fingerprint }}
+{{ end }}
+<script src="{{ $js.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}"{{ end }} defer></script>

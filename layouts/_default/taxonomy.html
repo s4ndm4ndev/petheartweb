@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="single-page">
+    <div class="container">
+        <article class="content-article">
+            <header class="article-header">
+                <h1 class="article-title">{{ .Title }}</h1>
+                <p class="article-subtitle">{{ .Data.Plural | title }}</p>
+            </header>
+            
+            <div class="article-content">
+                {{ if .Content }}
+                    {{ .Content }}
+                {{ else }}
+                    <p>Browse {{ .Data.Plural | lower }} below:</p>
+                {{ end }}
+                
+                {{ if .Pages }}
+                    <ul>
+                    {{ range .Pages }}
+                        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                    </ul>
+                {{ else }}
+                    <p>No {{ .Data.Plural | lower }} found.</p>
+                {{ end }}
+            </div>
+        </article>
+    </div>
+</div>
+{{ end }}

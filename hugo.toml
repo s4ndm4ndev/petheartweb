@@ -1,0 +1,93 @@
+baseURL = "https://petheart-clinic.pages.dev"
+languageCode = "en-us"
+title = "Pet Heart Animal Clinic"
+enableRobotsTXT = true
+enableGitInfo = false
+
+[params]
+  description = "Caring veterinary services for dogs, cats, and other animals by Dr. Chathuranga Anura Kumara"
+  doctor_name = "Dr. Chathuranga Anura Kumara"
+  clinic_name = "Pet Heart Animal Clinic"
+  primary_color = "#87CEEB"
+  phone = "+94 XX XXX XXXX"
+  email = "info@petheart.lk"
+  address = "123 Main Street, Colombo, Sri Lanka"
+  weekday_hours = "6:00 PM - 9:00 PM"
+  saturday_hours = "4:00 PM - 9:00 PM"
+  sunday_hours = "4:00 PM - 9:00 PM"
+
+  # SEO and Social Media
+  author = "Dr. Chathuranga Anura Kumara"
+  keywords = ["veterinary", "pet care", "animal clinic", "dog care", "cat care", "veterinarian", "Sri Lanka"]
+  og_image = "/images/logo/logo-200.png"
+  twitter_site = "@petheart_clinic"
+
+  # Business Information for Structured Data
+  business_type = "VeterinaryCare"
+  latitude = "6.9271"
+  longitude = "79.8612"
+  price_range = "$"
+  currencies_accepted = "LKR"
+  payment_accepted = ["Cash", "Credit Card", "Insurance"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
+    lineNos = false
+
+[build]
+  writeStats = true
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = false
+    [minify.tdewolff.css]
+      keepCSS2 = true
+      precision = 0
+    [minify.tdewolff.js]
+      keepVarNames = false
+      precision = 0
+
+# Asset processing configuration
+[params.assets]
+  disableHLJS = false
+  disableFingerprinting = false
+
+# Image processing
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 85
+  anchor = "smart"
+
+# Sitemap configuration
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Privacy configuration
+[privacy]
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.disqus]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.x]
+    disable = false
+    enableDNT = true
+    simple = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true

@@ -1,0 +1,28 @@
+# Hugo build files
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Kiro files
+.kiro/
+
+# Development files
+CLAUDE.md
+.DS_Store
+Thumbs.db
+
+# Node modules (if using npm for additional tooling)
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
+*.log

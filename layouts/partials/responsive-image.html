@@ -1,0 +1,53 @@
+{{/*
+  Responsive Image Partial
+  Usage: {{ partial "responsive-image.html" (dict "src" "images/logo/logo.png" "alt" "Pet Heart Logo" "class" "logo" "sizes" "(max-width: 768px) 100vw, 50vw") }}
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $sizes := .sizes | default "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" }}
+{{ $loading := .loading | default "lazy" }}
+
+{{ $image := resources.Get $src }}
+{{ if $image }}
+  {{ $webp := $image.Resize "800x webp q85" }}
+  {{ $large := $image.Resize "800x q85" }}
+  {{ $medium := $image.Resize "400x q85" }}
+  {{ $small := $image.Resize "200x q85" }}
+
+  <picture{{ with $class }} class="{{ . }}"{{ end }}>
+    <!-- WebP format for modern browsers -->
+    <source
+      srcset="{{ $small.Resize "200x webp q85" | relURL }} 200w,
+              {{ $medium.Resize "400x webp q85" | relURL }} 400w,
+              {{ $webp.RelPermalink }} 800w"
+      sizes="{{ $sizes }}"
+      type="image/webp">
+
+    <!-- Fallback for older browsers -->
+    <source
+      srcset="{{ $small.RelPermalink }} 200w,
+              {{ $medium.RelPermalink }} 400w,
+              {{ $large.RelPermalink }} 800w"
+      sizes="{{ $sizes }}"
+      type="image/{{ $image.MediaType.SubType }}">
+
+    <img
+      src="{{ $medium.RelPermalink }}"
+      alt="{{ $alt }}"
+      {{ with $class }}class="{{ . }}"{{ end }}
+      loading="{{ $loading }}"
+      decoding="async"
+      width="{{ $medium.Width }}"
+      height="{{ $medium.Height }}">
+  </picture>
+{{ else }}
+  <!-- Fallback for static images -->
+  <img
+    src="{{ $src | relURL }}"
+    alt="{{ $alt }}"
+    {{ with $class }}class="{{ . }}"{{ end }}
+    loading="{{ $loading }}"
+    decoding="async">
+{{ end }}

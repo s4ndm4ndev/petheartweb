@@ -1,0 +1,120 @@
+<!-- Critical CSS for above-the-fold content -->
+<style>
+/* Critical CSS - Above the fold styles */
+:root {
+  --primary-blue: #87CEEB;
+  --secondary-blue: #4682B4;
+  --accent-blue: #1E90FF;
+  --background: #FFFFFF;
+  --surface: #F8F9FA;
+  --text-primary: #212529;
+  --text-secondary: #6C757D;
+  --border: #DEE2E6;
+}
+
+[data-theme="dark"] {
+  --primary-blue: #87CEEB;
+  --secondary-blue: #5A9FD4;
+  --accent-blue: #4DA6FF;
+  --background: #1A1A1A;
+  --surface: #2D2D2D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B0B0;
+  --border: #404040;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-branding {
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.site-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem;
+}
+
+.clinic-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--primary-blue);
+}
+
+.doctor-name {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Hide non-critical elements initially */
+.nav-toggle,
+.primary-nav,
+.theme-toggle {
+  opacity: 0;
+}
+
+/* Loading state */
+.loading .nav-toggle,
+.loading .primary-nav,
+.loading .theme-toggle {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .site-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .clinic-name {
+    font-size: 1.2rem;
+  }
+
+  .doctor-name {
+    font-size: 0.8rem;
+  }
+}
+</style>

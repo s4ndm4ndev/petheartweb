@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ .Site.BaseURL }}/sitemap.xml
+
+# Disallow crawling of admin and private areas
+Disallow: /admin/
+Disallow: /.kiro/
+Disallow: /private/
+
+# Allow crawling of images
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Crawl delay (optional - be respectful to search engines)
+Crawl-delay: 1

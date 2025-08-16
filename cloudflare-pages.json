@@ -1,0 +1,59 @@
+{
+  "name": "pet-heart-website",
+  "production_branch": "main",
+  "preview_branches": ["develop", "staging"],
+  "build": {
+    "command": "hugo --minify --gc --cleanDestinationDir",
+    "destination_dir": "public",
+    "root_dir": "",
+    "environment_variables": {
+      "HUGO_VERSION": "0.120.4",
+      "HUGO_ENV": "production",
+      "NODE_VERSION": "18",
+      "HUGO_ENABLEGITINFO": "false"
+    }
+  },
+  "preview": {
+    "environment_variables": {
+      "HUGO_VERSION": "0.120.4",
+      "HUGO_ENV": "development",
+      "NODE_VERSION": "18",
+      "HUGO_ENABLEGITINFO": "false"
+    }
+  },
+  "deployment": {
+    "compatibility_date": "2024-01-01",
+    "compatibility_flags": [],
+    "usage_model": "standard"
+  },
+  "custom_domains": [
+    "petheart-clinic.pages.dev"
+  ],
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/",
+      "status": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "*.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "*.{css,js,png,jpg,jpeg,gif,svg,ico,woff,woff2}",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

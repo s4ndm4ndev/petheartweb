@@ -1,0 +1,43 @@
+<footer id="footer-content" class="site-footer" role="contentinfo">
+    <div class="footer-container">
+        <!-- Clinic Information -->
+        <div class="footer-section clinic-info">
+            <h2 class="footer-heading">{{ .Site.Title | default "Pet Heart Animal Clinic" }}</h2>
+            <p class="clinic-description">
+                Providing caring and professional veterinary services for dogs, cats, and other beloved animals.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section quick-links">
+            <h2 class="footer-heading">Quick Links</h2>
+            <nav class="footer-nav" aria-label="Footer navigation" role="navigation">
+                <ul class="footer-menu" role="list">
+                    <li role="listitem"><a href="{{ .Site.BaseURL }}" class="footer-link">Home</a></li>
+                    <li role="listitem"><a href="/about/" class="footer-link">About Dr. Kumara</a></li>
+                    <li role="listitem"><a href="/services/" class="footer-link">Our Services</a></li>
+                    <li role="listitem"><a href="/contact/" class="footer-link">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Copyright and Legal -->
+    <div class="footer-bottom">
+        <div class="footer-container">
+            <div class="copyright">
+                <p>&copy; {{ now.Year }} {{ .Site.Title | default "Pet Heart Animal Clinic" }}. All rights reserved.</p>
+                <p class="legal-note">
+                    Licensed veterinary practice providing professional animal healthcare services.
+                </p>
+            </div>
+            <div class="footer-branding">
+                <p class="caring-message">
+                    <span class="heart-icon" aria-hidden="true">❤️</span>
+                    Caring for your pets with love and expertise
+                    <span class="paw-icon" aria-hidden="true">🐾</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

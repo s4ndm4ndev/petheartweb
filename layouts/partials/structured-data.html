@@ -1,0 +1,205 @@
+<!-- Structured Data for Local Business and Veterinary Services -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VeterinaryCare",
+  "name": "{{ .Site.Params.clinic_name }}",
+  "description": "{{ .Site.Params.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "telephone": "{{ .Site.Params.phone }}",
+  "email": "{{ .Site.Params.email }}",
+  "image": "{{ .Site.BaseURL }}/images/logo/logo-200.png",
+  "logo": "{{ .Site.BaseURL }}/images/logo/logo-200.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ .Site.Params.address }}",
+    "addressLocality": "Colombo",
+    "addressRegion": "Western Province",
+    "postalCode": "00100",
+    "addressCountry": "LK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{ .Site.Params.latitude }}",
+    "longitude": "{{ .Site.Params.longitude }}"
+  },
+  "openingHours": [
+    "Mo-Fr 18:00-21:00",
+    "Sa-Su 16:00-21:00"
+  ],
+  "priceRange": "{{ .Site.Params.price_range }}",
+  "paymentAccepted": {{ .Site.Params.payment_accepted | jsonify }},
+  "currenciesAccepted": "{{ .Site.Params.currencies_accepted }}",
+  "founder": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.doctor_name }}",
+    "jobTitle": "Veterinarian",
+    "worksFor": {
+      "@type": "VeterinaryCare",
+      "name": "{{ .Site.Params.clinic_name }}"
+    }
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Colombo"
+  },
+  "serviceType": "Veterinary Care",
+  "medicalSpecialty": [
+    "Small Animal Medicine",
+    "Preventive Care",
+    "Emergency Care",
+    "Dental Care",
+    "Surgery"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Veterinary Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Routine Health Exams",
+          "description": "Comprehensive wellness examinations for dogs, cats, and other animals"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Vaccinations",
+          "description": "Core and lifestyle vaccines for disease prevention"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Dental Care",
+          "description": "Professional dental cleaning and oral health maintenance"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Surgery",
+          "description": "Routine and emergency surgical procedures"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Emergency Care",
+          "description": "24/7 urgent veterinary care for critical situations"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Diagnostic Services",
+          "description": "X-rays, blood work, and advanced diagnostic testing"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "{{ .Site.BaseURL }}"
+  ]
+}
+</script>
+
+{{ if .IsHome }}
+<!-- Website Schema for Homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.clinic_name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}/images/logo/logo-200.png"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ .Site.BaseURL }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{{ end }}
+
+{{ if eq .Type "page" }}
+<!-- Article Schema for Content Pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description | default .Summary }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.BaseURL }}/images/logo/logo-200.png"
+    }
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "url": "{{ .Permalink }}"
+}
+</script>
+{{ end }}
+
+{{ if eq .Title "About Dr. Chathuranga Anura Kumara" }}
+<!-- Person Schema for About Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Params.doctor_name }}",
+  "jobTitle": "Veterinarian",
+  "worksFor": {
+    "@type": "VeterinaryCare",
+    "name": "{{ .Site.Params.clinic_name }}",
+    "url": "{{ .Site.BaseURL }}"
+  },
+  "description": "Experienced veterinarian providing compassionate care for dogs, cats, and other animals",
+  "url": "{{ .Permalink }}",
+  "sameAs": [
+    "{{ .Site.BaseURL }}"
+  ],
+  "knowsAbout": [
+    "Veterinary Medicine",
+    "Small Animal Care",
+    "Emergency Veterinary Care",
+    "Preventive Medicine",
+    "Animal Surgery"
+  ],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "University of Peradeniya"
+  }
+}
+</script>
+{{ end }}

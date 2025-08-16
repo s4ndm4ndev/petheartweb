@@ -1,0 +1,37 @@
+<header class="site-header" role="banner">
+    <div class="header-container">
+        <!-- Logo and Clinic Name -->
+        <div class="site-branding">
+            <a href="{{ .Site.BaseURL }}" class="logo-link" aria-label="Pet Heart Animal Clinic - Home">
+                <picture class="site-logo-picture">
+                    <source media="(min-width: 768px)" srcset="/images/logo/logo-120.png 1x, /images/logo/logo-200.png 2x">
+                    <source media="(max-width: 767px)" srcset="/images/logo/logo-60.png 1x, /images/logo/logo-120.png 2x">
+                    <img src="/images/logo/logo-60.png" alt="Pet Heart Animal Clinic Logo - Heart with paw print design" class="site-logo" width="60" height="60" loading="eager">
+                </picture>
+                <div class="clinic-info">
+                    <h1 class="clinic-name">{{ .Site.Title | default "Pet Heart Animal Clinic" }}</h1>
+                    <p class="doctor-name">{{ .Site.Params.doctor_name | default "Dr. Chathuranga Anura Kumara" }}</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Navigation Toggle for Mobile -->
+        <button class="nav-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="primary-navigation"
+                aria-haspopup="true">
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="sr-only">Menu</span>
+        </button>
+
+        <!-- Primary Navigation -->
+        {{ partial "navigation.html" . }}
+
+        <!-- Theme Toggle Button -->
+        {{ partial "theme-toggle.html" . }}
+    </div>
+</header>

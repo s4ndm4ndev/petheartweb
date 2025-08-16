@@ -1,0 +1,179 @@
+{{ define "main" }}
+<main class="single-page">
+    <div class="container">
+        <article class="content-article">
+            <header class="article-header">
+                <h1 class="article-title">{{ .Title }}</h1>
+                {{ if .Params.subtitle }}
+                <p class="article-subtitle">{{ .Params.subtitle }}</p>
+                {{ end }}
+            </header>
+
+            <div class="article-content">
+                {{ .Content }}
+            </div>
+
+            {{ if .Params.credentials }}
+            <section class="credentials-section">
+                <h2>Professional Credentials</h2>
+                <ul class="credentials-list">
+                    {{ range .Params.credentials }}
+                    <li class="credential-item">
+                        <strong>{{ .title }}</strong>
+                        {{ if .institution }} - {{ .institution }}{{ end }}
+                        {{ if .year }} ({{ .year }}){{ end }}
+                        {{ if .description }}
+                        <p class="credential-description">{{ .description }}</p>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.values }}
+            <section class="values-section">
+                <h2>Our Values</h2>
+                <div class="values-grid">
+                    {{ range .Params.values }}
+                    <div class="value-item">
+                        {{ if .icon }}
+                        <div class="value-icon">{{ .icon | safeHTML }}</div>
+                        {{ end }}
+                        <h3 class="value-title">{{ .title }}</h3>
+                        <p class="value-description">{{ .description }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+
+            {{ if .Params.philosophy }}
+            <section class="philosophy-section">
+                <h2>Our Philosophy</h2>
+                <div class="philosophy-content">
+                    {{ .Params.philosophy | markdownify }}
+                </div>
+            </section>
+            {{ end }}
+
+            {{ if .Params.dog_services }}
+            <section class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">
+                        <span class="category-icon">{{ .Params.dog_services.icon | safeHTML }}</span>
+                        {{ .Params.dog_services.title }}
+                    </h2>
+                    <p class="service-category-subtitle">{{ .Params.dog_services.subtitle }}</p>
+                </div>
+                <ul class="service-list">
+                    {{ range .Params.dog_services.services }}
+                    <li class="service-item">
+                        <h3 class="service-name">{{ .name }}</h3>
+                        <p class="service-description">{{ .description }}</p>
+                        {{ if .details }}
+                        <p class="service-details">{{ .details }}</p>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.cat_services }}
+            <section class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">
+                        <span class="category-icon">{{ .Params.cat_services.icon | safeHTML }}</span>
+                        {{ .Params.cat_services.title }}
+                    </h2>
+                    <p class="service-category-subtitle">{{ .Params.cat_services.subtitle }}</p>
+                </div>
+                <ul class="service-list">
+                    {{ range .Params.cat_services.services }}
+                    <li class="service-item">
+                        <h3 class="service-name">{{ .name }}</h3>
+                        <p class="service-description">{{ .description }}</p>
+                        {{ if .details }}
+                        <p class="service-details">{{ .details }}</p>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.other_animal_services }}
+            <section class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">
+                        <span class="category-icon">{{ .Params.other_animal_services.icon | safeHTML }}</span>
+                        {{ .Params.other_animal_services.title }}
+                    </h2>
+                    <p class="service-category-subtitle">{{ .Params.other_animal_services.subtitle }}</p>
+                </div>
+                <ul class="service-list">
+                    {{ range .Params.other_animal_services.services }}
+                    <li class="service-item">
+                        <h3 class="service-name">{{ .name }}</h3>
+                        <p class="service-description">{{ .description }}</p>
+                        {{ if .details }}
+                        <p class="service-details">{{ .details }}</p>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.emergency_services }}
+            <section class="service-category emergency-services">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">
+                        <span class="category-icon">{{ .Params.emergency_services.icon | safeHTML }}</span>
+                        {{ .Params.emergency_services.title }}
+                    </h2>
+                    <p class="service-category-subtitle">{{ .Params.emergency_services.subtitle }}</p>
+                </div>
+                <p class="emergency-description">{{ .Params.emergency_services.description }}</p>
+                <ul class="emergency-list">
+                    {{ range .Params.emergency_services.services }}
+                    <li class="emergency-item">{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.diagnostic_services }}
+            <section class="service-category diagnostic-services">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">
+                        <span class="category-icon">{{ .Params.diagnostic_services.icon | safeHTML }}</span>
+                        {{ .Params.diagnostic_services.title }}
+                    </h2>
+                    <p class="service-category-subtitle">{{ .Params.diagnostic_services.subtitle }}</p>
+                </div>
+                <p class="diagnostic-description">{{ .Params.diagnostic_services.description }}</p>
+                <ul class="diagnostic-list">
+                    {{ range .Params.diagnostic_services.services }}
+                    <li class="diagnostic-item">{{ . }}</li>
+                    {{ end }}
+                </ul>
+            </section>
+            {{ end }}
+
+            {{ if .Params.cta_title }}
+            <section class="services-cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">{{ .Params.cta_title }}</h2>
+                    <p class="cta-description">{{ .Params.cta_description }}</p>
+                    {{ if .Params.cta_button }}
+                    <a href="/contact" class="cta-button">{{ .Params.cta_button }}</a>
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+        </article>
+    </div>
+</main>
+{{ end }}

@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects configuration
+# Handle Hugo's pretty URLs and ensure proper routing
+
+# Redirect root to index.html if needed
+/index /
+
+# Handle trailing slashes for Hugo's pretty URLs
+/about/ /about/index.html 200
+/services/ /services/index.html 200
+/contact/ /contact/index.html 200
+
+# Fallback for any unmatched routes to 404
+/* /404.html 404

@@ -1,0 +1,39 @@
+{
+  "name": "pet-heart-website-tests",
+  "version": "1.0.0",
+  "description": "Test suite for Pet Heart Animal Clinic website",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:theme": "jest tests/theme-toggle.test.js",
+    "test:back-to-top": "jest tests/back-to-top.test.js",
+    "test:responsive": "jest tests/responsive-design.test.js",
+    "test:hugo": "jest tests/hugo-build.test.js",
+    "validate:build": "hugo --minify --quiet && echo 'Hugo build successful'",
+    "validate:all": "npm run validate:build && npm run test"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^23.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "assets/js/**/*.js",
+      "!assets/js/**/*.min.js"
+    ],
+    "coverageDirectory": "tests/coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ]
+  }
+}

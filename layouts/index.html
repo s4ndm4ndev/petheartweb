@@ -1,0 +1,105 @@
+{{ define "main" }}
+<main class="homepage">
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-content">
+			<div class="hero-text">
+				<h1 class="hero-title">{{ .Title | default .Site.Title }}</h1>
+				<p class="hero-subtitle">{{ .Params.subtitle | default .Site.Params.description }}</p>
+				<div class="hero-cta">
+					<a href="/contact" class="btn btn-primary">Contact Us</a>
+					<a href="/services" class="btn btn-secondary">Our Services</a>
+				</div>
+			</div>
+			<div class="hero-image">
+				<img src="/images/logo/logo.png" alt="{{ .Site.Params.clinic_name }} Logo" class="hero-logo">
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Overview Section -->
+	<section class="services-overview">
+		<div class="container">
+			<h2 class="section-title">{{ .Params.services_title | default "Our Caring Services" }}</h2>
+			<p class="section-subtitle">{{ .Params.services_subtitle | default "Comprehensive veterinary care for your beloved pets" }}</p>
+
+			<div class="services-grid">
+				{{ range .Params.services }}
+				<div class="service-card">
+					<div class="service-icon">
+						<span class="icon">{{ .icon | default "🐾" }}</span>
+					</div>
+					<h3 class="service-title">{{ .title }}</h3>
+					<p class="service-description">{{ .description }}</p>
+				</div>
+				{{ end }}
+			</div>
+
+			<div class="services-cta">
+				<a href="/services" class="btn btn-outline">View All Services</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Doctor Section -->
+	<section class="doctor-highlight">
+		<div class="container">
+			<div class="doctor-content">
+				<div class="doctor-text">
+					<h2 class="section-title">{{ .Params.doctor_title | default "Meet Our Caring Veterinarian" }}</h2>
+					<h3 class="doctor-name">{{ .Site.Params.doctor_name }}</h3>
+					<p class="doctor-description">{{ .Params.doctor_description | default "Dedicated to providing compassionate and professional veterinary care for your beloved pets." }}</p>
+					<div class="doctor-cta">
+						<a href="/about" class="btn btn-outline">Learn More About Dr. Kumara</a>
+					</div>
+				</div>
+				<div class="doctor-image">
+					<div class="doctor-placeholder">
+						<span class="icon">👨‍⚕️</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Information Section -->
+	<section class="contact-highlight">
+		<div class="container">
+			<h2 class="section-title">{{ .Params.contact_title | default "Visit Pet Heart Animal Clinic" }}</h2>
+			<div class="contact-grid">
+				<div class="contact-item">
+					<div class="contact-icon">
+						<span class="icon">📍</span>
+					</div>
+					<h3>Location</h3>
+					<p>{{ .Site.Params.address }}</p>
+				</div>
+				<div class="contact-item">
+					<div class="contact-icon">
+						<span class="icon">📞</span>
+					</div>
+					<h3>Phone</h3>
+					<p>{{ .Site.Params.phone }}</p>
+				</div>
+				<div class="contact-item">
+					<div class="contact-icon">
+						<span class="icon">✉️</span>
+					</div>
+					<h3>Email</h3>
+					<p>{{ .Site.Params.email }}</p>
+				</div>
+				<div class="contact-item">
+					<div class="contact-icon">
+						<span class="icon">🕒</span>
+					</div>
+					<h3>Hours</h3>
+					<p>{{ .Params.hours | default "Mon-Fri: 8AM-6PM<br>Sat: 9AM-4PM<br>Sun: Emergency Only" | safeHTML }}</p>
+				</div>
+			</div>
+			<div class="contact-cta">
+				<a href="/contact" class="btn btn-primary">Get Directions & Full Contact Info</a>
+			</div>
+		</div>
+	</section>
+</main>
+{{ end }}

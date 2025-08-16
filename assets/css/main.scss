@@ -1,0 +1,14 @@
+// Pet Heart Animal Clinic - Main SCSS
+// Import structure for modular stylesheets
+
+// 1. Variables and configuration
+@import "variables";
+
+// 2. Base styles and reset
+@import "base";
+
+// 3. Theme system
+@import "themes";
+
+// 4. Components (will be added in later tasks)
+@import "components";

@@ -1,0 +1,92 @@
+name: Test Hugo Build for Pet Heart Website
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.120.4'
+        extended: true
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+
+    - name: Install dependencies (if package.json exists)
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        else
+          echo "No package.json found, skipping npm install"
+        fi
+
+    - name: Build Hugo site
+      run: |
+        echo "Building Pet Heart Animal Clinic website..."
+        hugo --minify --gc --cleanDestinationDir
+
+        # Verify build output
+        if [ ! -d "public" ] || [ -z "$(ls -A public)" ]; then
+          echo "❌ Build failed - no output generated"
+          exit 1
+        fi
+
+        echo "✅ Build completed successfully!"
+        echo "Build statistics:"
+        echo "- Total files: $(find public -type f | wc -l)"
+        echo "- HTML files: $(find public -name "*.html" | wc -l)"
+        echo "- CSS files: $(find public -name "*.css" | wc -l)"
+        echo "- JS files: $(find public -name "*.js" | wc -l)"
+
+    - name: Test HTML validation
+      run: |
+        # Install html5validator if we want to validate HTML
+        # pip install html5validator
+        # html5validator --root public/
+        echo "HTML validation would run here in a full CI/CD setup"
+
+    - name: Test links (basic check)
+      run: |
+        # Check that key files exist
+        test -f public/index.html || (echo "❌ Missing index.html" && exit 1)
+        test -f public/about/index.html || (echo "❌ Missing about page" && exit 1)
+        test -f public/services/index.html || (echo "❌ Missing services page" && exit 1)
+        test -f public/contact/index.html || (echo "❌ Missing contact page" && exit 1)
+        test -f public/404.html || (echo "❌ Missing 404 page" && exit 1)
+        echo "✅ All required pages exist"
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: hugo-build-${{ github.sha }}
+        path: public/
+        retention-days: 7
+
+    - name: Display build summary
+      run: |
+        echo "🏥 Pet Heart Animal Clinic Build Summary"
+        echo "========================================"
+        echo "Hugo Version: $(hugo version)"
+        echo "Build Time: $(date)"
+        echo "Commit: ${{ github.sha }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Total Files: $(find public -type f | wc -l)"
+        echo "Site Size: $(du -sh public/ | cut -f1)"

@@ -1,0 +1,22 @@
+{
+    "name": "Pet Heart Animal Clinic",
+    "short_name": "Pet Heart",
+    "description": "Caring veterinary services for dogs, cats, and other animals by Dr. Chathuranga Anura Kumara",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#87CEEB",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/"
+}

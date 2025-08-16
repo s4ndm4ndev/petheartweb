@@ -1,0 +1,48 @@
+<!-- Primary Navigation -->
+<nav id="primary-navigation" class="primary-nav" role="navigation" aria-label="Main navigation">
+    <ul class="nav-menu" role="menubar">
+        <li class="nav-item" role="none">
+            <a href="{{ .Site.BaseURL }}"
+               class="nav-link{{ if .IsHome }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if .IsHome }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if .IsHome }}current-page-desc{{ end }}">
+                <span class="nav-text">Home</span>
+                {{ if .IsHome }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+        <li class="nav-item" role="none">
+            {{- $aboutActive := or (eq .Section "about") (eq .RelPermalink "/about/") -}}
+            <a href="/about/"
+               class="nav-link{{ if $aboutActive }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if $aboutActive }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if $aboutActive }}current-page-desc{{ end }}">
+                <span class="nav-text">About</span>
+                {{ if $aboutActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+        <li class="nav-item" role="none">
+            {{- $servicesActive := or (eq .Section "services") (eq .RelPermalink "/services/") -}}
+            <a href="/services/"
+               class="nav-link{{ if $servicesActive }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if $servicesActive }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if $servicesActive }}current-page-desc{{ end }}">
+                <span class="nav-text">Services</span>
+                {{ if $servicesActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+        <li class="nav-item" role="none">
+            {{- $contactActive := or (eq .Section "contact") (eq .RelPermalink "/contact/") -}}
+            <a href="/contact/"
+               class="nav-link{{ if $contactActive }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if $contactActive }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if $contactActive }}current-page-desc{{ end }}">
+                <span class="nav-text">Contact</span>
+                {{ if $contactActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+    </ul>
+</nav>

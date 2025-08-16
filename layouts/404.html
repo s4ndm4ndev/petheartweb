@@ -1,0 +1,63 @@
+{{ define "main" }}
+<div class="error-page">
+    <div class="error-content">
+        <div class="error-icon">
+            <span class="error-number">404</span>
+            <div class="paw-prints">
+                <span class="paw">🐾</span>
+                <span class="paw">🐾</span>
+                <span class="paw">🐾</span>
+            </div>
+        </div>
+
+        <h1 class="error-title">Oops! This Page Has Wandered Off</h1>
+        <p class="error-message">
+            Just like a curious pet exploring new places, this page seems to have wandered away from where it should be.
+            Don't worry – we're here to help you find your way back to the care and information you're looking for.
+        </p>
+
+        <div class="error-suggestions">
+            <h2>Let us help you get back on track:</h2>
+            <ul>
+                <li>Double-check the web address for any typos</li>
+                <li>Use our navigation menu to explore our services</li>
+                <li>Start fresh from our homepage</li>
+                <li>Contact us directly – we're always here to help</li>
+            </ul>
+        </div>
+
+        <div class="error-actions">
+            <a href="{{ .Site.BaseURL }}" class="btn btn-primary">
+                <span class="btn-icon">🏠</span>
+                Return Home
+            </a>
+            <a href="/services" class="btn btn-secondary">
+                <span class="btn-icon">⚕️</span>
+                Our Services
+            </a>
+            <a href="/contact" class="btn btn-secondary">
+                <span class="btn-icon">💙</span>
+                Get in Touch
+            </a>
+        </div>
+
+        <div class="helpful-links">
+            <h3>Find what you're looking for:</h3>
+            <nav class="error-nav">
+                <a href="/about">About {{ .Site.Params.doctor_name }}</a>
+                <a href="/services">Veterinary Care Services</a>
+                <a href="/contact">Contact & Location</a>
+            </nav>
+        </div>
+
+        <div class="caring-message">
+            <p>
+                <span class="heart-icon">💙</span>
+                At {{ .Site.Params.clinic_name }}, we care for every visitor – even the lost ones.
+                We're here whenever you need us.
+                <span class="paw-icon">🐾</span>
+            </p>
+        </div>
+    </div>
+</div>
+{{ end }}

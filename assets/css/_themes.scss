@@ -1,0 +1,414 @@
+// Pet Heart Animal Clinic - Theme System
+// Data-theme attribute switching for light/dark modes
+
+// ============================================================================
+// THEME TRANSITION SYSTEM
+// ============================================================================
+
+// Smooth transitions for theme changes
+html {
+	transition: $transition-colors;
+}
+
+body {
+	transition: $transition-colors;
+}
+
+// All elements that use CSS custom properties should transition smoothly
+*,
+*::before,
+*::after {
+	transition: background-color $transition-normal,
+		border-color $transition-normal, color $transition-normal,
+		fill $transition-normal, stroke $transition-normal,
+		box-shadow $transition-normal;
+}
+
+// ============================================================================
+// THEME-SPECIFIC COMPONENT STYLES
+// ============================================================================
+
+// Logo and branding adjustments for themes
+.logo {
+	transition: $transition-opacity;
+
+	// Ensure logo visibility in both themes
+	[data-theme="light"] & {
+		opacity: 1;
+	}
+
+	[data-theme="dark"] & {
+		opacity: 1;
+		// Add subtle glow effect for dark mode
+		filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.3));
+	}
+}
+
+// Navigation theme adjustments
+.navbar {
+	background-color: var(--surface);
+	border-bottom: 1px solid var(--border);
+
+	[data-theme="dark"] & {
+		// Enhanced shadow for dark mode
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+	}
+}
+
+// Card and surface elements
+.card,
+.surface {
+	background-color: var(--surface);
+	border: 1px solid var(--border);
+
+	[data-theme="light"] & {
+		box-shadow: $shadow-sm;
+	}
+
+	[data-theme="dark"] & {
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+	}
+}
+
+// Button theme variations
+.btn {
+	transition: $transition-all;
+
+	&.btn-primary {
+		background-color: var(--primary-blue);
+		color: var(--text-inverse);
+		border: 1px solid var(--primary-blue);
+
+		&:hover {
+			background-color: var(--secondary-blue);
+			border-color: var(--secondary-blue);
+			transform: translateY(-1px);
+		}
+
+		[data-theme="dark"] & {
+			// Enhanced glow effect for primary buttons in dark mode
+			box-shadow: 0 0 0 0 rgba(135, 206, 235, 0.4);
+
+			&:hover {
+				box-shadow: 0 0 0 4px rgba(135, 206, 235, 0.2);
+			}
+		}
+	}
+
+	&.btn-secondary {
+		background-color: transparent;
+		color: var(--primary-blue);
+		border: 1px solid var(--primary-blue);
+
+		&:hover {
+			background-color: var(--primary-blue);
+			color: var(--text-inverse);
+		}
+	}
+}
+
+// Form elements theme adjustments
+input,
+textarea,
+select {
+	background-color: var(--background);
+	border: 1px solid var(--border);
+	color: var(--text-primary);
+
+	&:focus {
+		border-color: var(--primary-blue);
+		box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.1);
+	}
+
+	[data-theme="dark"] & {
+		background-color: var(--surface);
+
+		&::placeholder {
+			color: var(--text-secondary);
+		}
+	}
+}
+
+// ============================================================================
+// THEME TOGGLE BUTTON STYLES
+// ============================================================================
+
+.theme-toggle {
+	position: relative;
+	width: 48px;
+	height: 24px;
+	background-color: var(--border);
+	border-radius: $border-radius-full;
+	border: none;
+	cursor: pointer;
+	transition: $transition-all;
+
+	&:hover {
+		background-color: var(--primary-blue);
+	}
+
+	&:focus {
+		outline: 2px solid var(--focus-ring);
+		outline-offset: 2px;
+	}
+
+	// Toggle indicator
+	&::before {
+		content: "";
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 20px;
+		height: 20px;
+		background-color: var(--background);
+		border-radius: 50%;
+		transition: $transition-transform;
+		box-shadow: $shadow-sm;
+	}
+
+	// Dark mode position
+	[data-theme="dark"] & {
+		background-color: var(--primary-blue);
+
+		&::before {
+			transform: translateX(24px);
+		}
+	}
+
+	// Icons for sun/moon (using pseudo-elements)
+	&::after {
+		content: "☀️";
+		position: absolute;
+		top: 50%;
+		left: 6px;
+		transform: translateY(-50%);
+		font-size: 12px;
+		opacity: 1;
+		transition: $transition-opacity;
+
+		[data-theme="dark"] & {
+			content: "🌙";
+			left: auto;
+			right: 6px;
+		}
+	}
+}
+
+// ============================================================================
+// BACK TO TOP BUTTON THEME STYLES
+// ============================================================================
+
+.back-to-top {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	width: 48px;
+	height: 48px;
+	background-color: var(--primary-blue);
+	color: var(--text-inverse);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(20px);
+	transition: $transition-all;
+	z-index: 100;
+
+	&.visible {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	&:hover {
+		background-color: var(--secondary-blue);
+		transform: translateY(-2px);
+	}
+
+	&:focus {
+		outline: 2px solid var(--focus-ring);
+		outline-offset: 2px;
+	}
+
+	// Enhanced shadow for dark mode
+	[data-theme="dark"] & {
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+		&:hover {
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	// Arrow icon
+	&::before {
+		content: "↑";
+		font-size: 20px;
+		font-weight: bold;
+	}
+}
+
+// ============================================================================
+// CONTENT AREA THEME ADJUSTMENTS
+// ============================================================================
+
+// Main content areas
+main {
+	background-color: var(--background);
+	min-height: calc(100vh - 120px); // Adjust based on header/footer height
+}
+
+// Section backgrounds
+.section {
+	&.section-primary {
+		background-color: var(--primary-blue);
+		color: var(--text-inverse);
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: var(--text-inverse);
+		}
+	}
+
+	&.section-secondary {
+		background-color: var(--surface);
+
+		[data-theme="dark"] & {
+			background-color: var(--surface-elevated);
+		}
+	}
+}
+
+// ============================================================================
+// HERO SECTION THEME STYLES
+// ============================================================================
+
+.hero {
+	background: linear-gradient(
+		135deg,
+		var(--primary-blue) 0%,
+		var(--secondary-blue) 100%
+	);
+	color: var(--text-inverse);
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--text-inverse);
+	}
+
+	[data-theme="dark"] & {
+		// Enhanced gradient for dark mode
+		background: linear-gradient(
+			135deg,
+			var(--primary-blue) 0%,
+			#2e5984 100%
+		);
+	}
+}
+
+// ============================================================================
+// FOOTER THEME STYLES
+// ============================================================================
+
+.footer {
+	background-color: var(--surface);
+	border-top: 1px solid var(--border);
+	color: var(--text-secondary);
+
+	[data-theme="dark"] & {
+		background-color: var(--surface-elevated);
+	}
+
+	a {
+		color: var(--primary-blue);
+
+		&:hover {
+			color: var(--secondary-blue);
+		}
+	}
+}
+
+// ============================================================================
+// RESPONSIVE THEME ADJUSTMENTS
+// ============================================================================
+
+// Mobile-specific theme adjustments
+@media (max-width: $breakpoint-md) {
+	.theme-toggle {
+		width: 44px;
+		height: 22px;
+
+		&::before {
+			width: 18px;
+			height: 18px;
+		}
+
+		[data-theme="dark"] &::before {
+			transform: translateX(22px);
+		}
+	}
+
+	.back-to-top {
+		width: 44px;
+		height: 44px;
+		bottom: 1rem;
+		right: 1rem;
+
+		&::before {
+			font-size: 18px;
+		}
+	}
+}
+
+// ============================================================================
+// PRINT STYLES (FORCE LIGHT MODE)
+// ============================================================================
+
+@media print {
+	* {
+		background: white !important;
+		color: black !important;
+		box-shadow: none !important;
+	}
+
+	.theme-toggle,
+	.back-to-top {
+		display: none !important;
+	}
+}
+
+// ============================================================================
+// HIGH CONTRAST MODE SUPPORT
+// ============================================================================
+
+@media (prefers-contrast: high) {
+	:root {
+		--border: #000000;
+		--text-secondary: #000000;
+	}
+
+	[data-theme="dark"] {
+		--border: #ffffff;
+		--text-secondary: #ffffff;
+		--background: #000000;
+		--surface: #1a1a1a;
+	}
+
+	.btn {
+		border-width: 2px;
+	}
+
+	input,
+	textarea,
+	select {
+		border-width: 2px;
+	}
+}
