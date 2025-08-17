@@ -1,0 +1,13 @@
+{{ if .Page.Params.services }}
+<div class="services-grid">
+    {{ range .Page.Params.services }}
+    <a href="{{ .link }}" class="service-card">
+        <div class="service-icon">
+            <span class="icon">{{ .icon }}</span>
+        </div>
+        <h3 class="service-title">{{ .title }}</h3>
+        <p class="service-description">{{ .description }}</p>
+    </a>
+    {{ end }}
+</div>
+{{ end }}

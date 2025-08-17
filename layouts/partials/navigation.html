@@ -12,17 +12,6 @@
             </a>
         </li>
         <li class="nav-item" role="none">
-            {{- $aboutActive := or (eq .Section "about") (eq .RelPermalink "/about/") -}}
-            <a href="/about/"
-               class="nav-link{{ if $aboutActive }} active{{ end }}"
-               role="menuitem"
-               aria-current="{{ if $aboutActive }}page{{ else }}false{{ end }}"
-               aria-describedby="{{ if $aboutActive }}current-page-desc{{ end }}">
-                <span class="nav-text">About</span>
-                {{ if $aboutActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
-            </a>
-        </li>
-        <li class="nav-item" role="none">
             {{- $servicesActive := or (eq .Section "services") (eq .RelPermalink "/services/") -}}
             <a href="/services/"
                class="nav-link{{ if $servicesActive }} active{{ end }}"
@@ -31,6 +20,17 @@
                aria-describedby="{{ if $servicesActive }}current-page-desc{{ end }}">
                 <span class="nav-text">Services</span>
                 {{ if $servicesActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+        <li class="nav-item" role="none">
+            {{- $aboutActive := or (eq .Section "about") (eq .RelPermalink "/about/") -}}
+            <a href="/about/"
+               class="nav-link{{ if $aboutActive }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if $aboutActive }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if $aboutActive }}current-page-desc{{ end }}">
+                <span class="nav-text">About</span>
+                {{ if $aboutActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
             </a>
         </li>
         <li class="nav-item" role="none">

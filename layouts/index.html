@@ -25,13 +25,13 @@
 
 			<div class="services-grid">
 				{{ range .Params.services }}
-				<div class="service-card">
+				<a href="{{ .link | default "/services/" }}" class="service-card">
 					<div class="service-icon">
 						<span class="icon">{{ .icon | default "🐾" }}</span>
 					</div>
 					<h3 class="service-title">{{ .title }}</h3>
 					<p class="service-description">{{ .description }}</p>
-				</div>
+				</a>
 				{{ end }}
 			</div>
 

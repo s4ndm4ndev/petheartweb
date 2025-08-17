@@ -13,23 +13,32 @@ services:
     - title: "Dog Care"
       description: "Complete healthcare services for dogs of all sizes and breeds, from routine checkups to specialized treatments."
       icon: "🐕"
+      link: "/services/dog-care/"
 
     - title: "Cat Care"
       description: "Gentle and thorough veterinary care specifically tailored to the unique needs of our feline friends."
       icon: "🐱"
+      link: "/services/cat-care/"
 
     - title: "Preventive Care"
       description: "Regular wellness exams, vaccinations, and preventive treatments to keep your pets healthy and happy."
       icon: "💉"
-
+      link: "/services/preventive-care/"
 
     - title: "Surgery"
       description: "Safe and professional surgical procedures performed with the highest standards of care and precision."
       icon: "⚕️"
+      link: "/services/surgery/"
 
     - title: "Dental Care"
       description: "Complete dental health services to maintain your pet's oral hygiene and overall wellbeing."
       icon: "🦷"
+      link: "/services/dental-care/"
+
+    - title: "Diagnostic Services"
+      description: "Advanced diagnostic testing including X-rays, ultrasound, and laboratory services for accurate diagnosis."
+      icon: "🔬"
+      link: "/services/diagnostic-services/"
 
 # Doctor Section
 doctor_title: "Meet Our Caring Veterinarian"
