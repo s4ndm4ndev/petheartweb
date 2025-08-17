@@ -82,4 +82,4 @@ We understand that your pets are family members, and we treat them with the same
 -   Caring, professional staff dedicated to animal welfare
 -   Convenient location with flexible appointment scheduling
 
-Your pet's health and happiness are our top priorities. Contact us today to schedule an appointment and experience the Pet Heart difference.
+Your pet's health and happiness are our top priorities. Contact us today to schedule an appointment and experience the Pet Heart Animal Clinic difference.

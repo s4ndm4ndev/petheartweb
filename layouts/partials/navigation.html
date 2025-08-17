@@ -34,6 +34,17 @@
             </a>
         </li>
         <li class="nav-item" role="none">
+            {{- $doctorActive := or (eq .Section "doctor") (eq .RelPermalink "/doctor/") -}}
+            <a href="/doctor/"
+               class="nav-link{{ if $doctorActive }} active{{ end }}"
+               role="menuitem"
+               aria-current="{{ if $doctorActive }}page{{ else }}false{{ end }}"
+               aria-describedby="{{ if $doctorActive }}current-page-desc{{ end }}">
+                <span class="nav-text">Our Doctor</span>
+                {{ if $doctorActive }}<span id="current-page-desc" class="sr-only">(current page)</span>{{ end }}
+            </a>
+        </li>
+        <li class="nav-item" role="none">
             {{- $contactActive := or (eq .Section "contact") (eq .RelPermalink "/contact/") -}}
             <a href="/contact/"
                class="nav-link{{ if $contactActive }} active{{ end }}"

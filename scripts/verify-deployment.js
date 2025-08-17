@@ -42,7 +42,7 @@ async function testUrl(url, name) {
         res.on('data', chunk => body += chunk);
         res.on('end', () => {
           const hasTitle = body.includes('Pet Heart Animal Clinic');
-          const hasLogo = body.includes('logo') || body.includes('Pet Heart');
+          const hasLogo = body.includes('logo') || body.includes('Pet Heart Animal Clinic');
           const hasTheme = body.includes('data-theme') || body.includes('theme-toggle');
 
           if (name === 'Homepage' || name.includes('Page')) {
@@ -95,7 +95,7 @@ async function runTests() {
   console.log(`Average response time: ${Math.round(avgResponseTime)}ms`);
 
   if (passed === total) {
-    console.log('\n🎉 All tests passed! Pet Heart website is deployed successfully.');
+    console.log('\n🎉 All tests passed! Pet Heart Animal Clinic website is deployed successfully.');
     process.exit(0);
   } else {
     console.log('\n⚠️  Some tests failed. Please check the deployment.');

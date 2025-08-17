@@ -319,7 +319,7 @@ describe('Hugo Build Process', () => {
       expect(content).toContain('charset="utf-8"');
     });
 
-    test('should include Pet Heart branding', () => {
+    test('should include Pet Heart Animal Clinic branding', () => {
       const indexPath = path.join(publicDir, 'index.html');
       const content = fs.readFileSync(indexPath, 'utf8');
 

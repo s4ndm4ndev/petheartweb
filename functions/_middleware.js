@@ -10,7 +10,7 @@ export async function onRequest(context) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
-  // Content Security Policy for Pet Heart website
+  // Content Security Policy for Pet Heart Animal Clinic website
   const csp = [
     "default-src 'self'",
     "style-src 'self' 'unsafe-inline' fonts.googleapis.com",

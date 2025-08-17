@@ -1,0 +1,323 @@
+// Pet Heart Animal Clinic - Footer Components
+// Footer layout, content, and styling
+
+// ============================================================================
+// FOOTER BASE STYLES
+// ============================================================================
+
+.site-footer {
+	background: var(--surface);
+	border-top: 1px solid var(--border);
+	color: var(--text-secondary);
+	margin-top: auto;
+}
+
+.footer-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 3rem 1rem 0;
+
+	@media (min-width: 768px) {
+		padding: 3rem 2rem 0;
+	}
+}
+
+.footer-section {
+	margin-bottom: 2rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 0;
+	}
+}
+
+// Footer grid layout
+.site-footer .footer-container {
+	@media (min-width: 768px) {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+}
+
+.footer-heading {
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: 1rem;
+	border-bottom: 2px solid var(--primary-blue);
+	padding-bottom: 0.5rem;
+}
+
+// ============================================================================
+// CLINIC INFO SECTION
+// ============================================================================
+
+.clinic-info {
+	.clinic-description {
+		font-size: 1rem;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+		color: var(--text-secondary);
+	}
+
+	.doctor-info {
+		padding: 1rem;
+		background: var(--background);
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		border-left: 4px solid var(--primary-blue);
+	}
+
+	.doctor-name {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--primary-blue);
+		margin-bottom: 0.25rem;
+	}
+
+	.doctor-title {
+		font-size: 0.875rem;
+		color: var(--text-secondary);
+		font-style: italic;
+		margin: 0;
+	}
+}
+
+// ============================================================================
+// CONTACT INFO SECTION
+// ============================================================================
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.contact-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.contact-icon {
+	font-size: 1.125rem;
+	margin-top: 0.125rem;
+	flex-shrink: 0;
+}
+
+.clinic-address {
+	font-style: normal;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.contact-link {
+	color: var(--primary-blue);
+	text-decoration: none;
+	transition: color 0.2s ease-in-out;
+
+	&:hover {
+		color: var(--secondary-blue);
+		text-decoration: underline;
+	}
+
+	&:focus {
+		outline: 2px solid var(--primary-blue);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+}
+
+// ============================================================================
+// HOURS INFO SECTION
+// ============================================================================
+
+.hours-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.hours-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem;
+	background: var(--background);
+	border: 1px solid var(--border);
+	border-radius: 0.25rem;
+	font-size: 0.875rem;
+}
+
+.day {
+	font-weight: 500;
+	color: var(--text-primary);
+}
+
+.time {
+	color: var(--text-secondary);
+	text-align: right;
+}
+
+.emergency-note {
+	font-size: 0.875rem;
+	color: var(--primary-blue);
+	font-weight: 500;
+	text-align: center;
+	padding: 0.75rem;
+	background: rgba(135, 206, 235, 0.1);
+	border: 1px solid var(--primary-blue);
+	border-radius: 0.5rem;
+	margin: 0;
+}
+
+// ============================================================================
+// QUICK LINKS SECTION
+// ============================================================================
+
+.footer-nav {
+	.footer-menu {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.footer-link {
+		color: var(--text-secondary);
+		text-decoration: none;
+		padding: 0.5rem 0;
+		border-bottom: 1px solid transparent;
+		transition: all 0.2s ease-in-out;
+		display: block;
+
+		&:hover {
+			color: var(--primary-blue);
+			border-bottom-color: var(--primary-blue);
+			padding-left: 0.5rem;
+		}
+
+		&:focus {
+			outline: 2px solid var(--primary-blue);
+			outline-offset: 2px;
+			border-radius: 2px;
+		}
+	}
+}
+
+// ============================================================================
+// FOOTER BOTTOM SECTION
+// ============================================================================
+
+.footer-bottom {
+	border-top: 1px solid var(--border);
+	padding: 1.5rem 0;
+	margin-top: 2rem;
+
+	.footer-container {
+		padding: 0 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 1rem;
+
+		@media (min-width: 768px) {
+			padding: 0 2rem;
+			flex-direction: row;
+			justify-content: space-between;
+			text-align: left;
+		}
+	}
+}
+
+.copyright {
+	font-size: 0.875rem;
+	color: var(--text-secondary);
+
+	p {
+		margin: 0;
+		margin-bottom: 0.25rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.legal-note {
+		font-size: 0.75rem;
+		opacity: 0.8;
+	}
+}
+
+.footer-branding {
+	.caring-message {
+		font-size: 0.875rem;
+		color: white;
+		font-weight: 500;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		justify-content: center;
+
+		@media (min-width: 768px) {
+			justify-content: flex-end;
+		}
+	}
+
+	.heart-icon,
+	.paw-icon {
+		font-size: 1rem;
+		animation: pulse 2s infinite;
+	}
+}
+
+// ============================================================================
+// ANIMATIONS
+// ============================================================================
+
+// Pulse animation for icons
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+}
+
+// ============================================================================
+// DARK MODE ADJUSTMENTS
+// ============================================================================
+
+[data-theme="dark"] {
+	.site-footer {
+		background: var(--surface-elevated);
+	}
+
+	.doctor-info,
+	.hours-item {
+		background: var(--surface);
+	}
+
+	.emergency-note {
+		background: rgba(135, 206, 235, 0.15);
+	}
+}
+
+// ============================================================================
+// ACCESSIBILITY IMPROVEMENTS
+// ============================================================================
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+	.heart-icon,
+	.paw-icon {
+		animation: none;
+	}
+}

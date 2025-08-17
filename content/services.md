@@ -56,6 +56,6 @@ At Pet Heart Animal Clinic, we provide comprehensive veterinary services with th
 
 ### Ready to Schedule?
 
-Whether your pet needs routine care or urgent attention, we're here to help. Contact us today to experience the Pet Heart difference.
+Whether your pet needs routine care or urgent attention, we're here to help. Contact us today to experience the Pet Heart Animal Clinic difference.
 
 *Your pet's health and happiness are our top priorities.*

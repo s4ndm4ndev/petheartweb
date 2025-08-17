@@ -1,35 +1,35 @@
 ---
-title: "About Dr. Chathuranga Anura Kumara"
-subtitle: "Dedicated to Caring for Your Beloved Pets"
-description: "Learn about Dr. Chathuranga Anura Kumara and Pet Heart Animal Clinic's commitment to providing compassionate veterinary care for dogs, cats, and other animals."
+title: "About Pet Heart Animal Clinic"
+subtitle: "Where Every Pet Receives Loving, Professional Care"
+description: "Pet Heart Animal Clinic provides compassionate veterinary care for dogs, cats, and other animals with modern facilities and personalized attention."
 date: 2024-01-01
 draft: false
 type: "page"
 ---
 
-## Meet Dr. Chathuranga Anura Kumara
+## Your Pet's Health is Our Heart
 
-With over 6 years of experience in veterinary medicine, Dr. Kumara founded Pet Heart Animal Clinic with a simple vision: to provide exceptional veterinary care with the love and compassion that every animal deserves.
+Pet Heart Animal Clinic is a modern veterinary practice dedicated to providing exceptional care for your beloved companions. Founded with a vision of combining advanced medical expertise with genuine compassion, we create a welcoming environment where both pets and their families feel comfortable and cared for.
 
-### Our Mission
+### Our Clinic
 
-At Pet Heart Animal Clinic, we believe that pets are family. We combine advanced medical knowledge with genuine love for animals, creating a calm, welcoming environment where both pets and their families feel comfortable and cared for.
+We believe that pets are family members who deserve the highest quality care. Our state-of-the-art facility is equipped with modern diagnostic and treatment equipment, allowing us to provide comprehensive veterinary services under one roof.
 
-### What We Offer
+### Our Services
 
-Dr. Kumara specializes in comprehensive care for **dogs and cats**, with additional expertise in treating **rabbits, birds, and other small animals**:
+We specialize in care for **dogs and cats**, with expertise in treating **rabbits, birds, and other small animals**:
 
 - **Preventive Care** - Wellness exams, vaccinations, and health screenings
-- **Internal Medicine** - Diagnosing and treating medical conditions  
+- **Internal Medicine** - Diagnosing and treating medical conditions
 - **Emergency Care** - Urgent care when your pet needs it most
 - **Surgery** - Routine and advanced surgical procedures
-- **Senior Pet Care** - Specialized attention for older pets
+- **Senior Pet Care** - Specialized attention for aging pets
 
-### Why Choose Us?
+### Why Choose Pet Heart Animal Clinic?
 
-- **Personalized Attention** - We take time to understand your pet's unique needs
-- **Modern Equipment** - State-of-the-art diagnostic and treatment facilities
-- **Clear Communication** - We keep you fully informed about your pet's care
-- **Compassionate Approach** - Every pet is treated with love and respect
+- **Personalized Care** - Individual attention for every pet's unique needs
+- **Modern Facilities** - Advanced diagnostic and treatment equipment
+- **Compassionate Team** - Led by [Dr. Chathuranga Anura Kumara](/doctor), every pet is treated with love and respect
+- **Clear Communication** - We keep you fully informed throughout your pet's care
 
 *Ready to give your pet the caring treatment they deserve? Contact us today to schedule your visit.*

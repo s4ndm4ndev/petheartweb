@@ -10,5 +10,39 @@
 // 3. Theme system
 @import "themes";
 
-// 4. Components (will be added in later tasks)
-@import "components";
+// 4. Component modules (organized by functionality)
+// Layout and structural components
+@import "components/layout";
+
+// Form components
+@import "components/forms";
+
+// Button components
+@import "components/buttons";
+
+// Navigation and header
+@import "components/navigation";
+
+// Footer components
+@import "components/footer";
+
+// Hero section
+@import "components/hero";
+
+// Card components (service cards, contact items, etc.)
+@import "components/cards";
+
+// Theme toggle functionality
+@import "components/theme-toggle";
+
+// Back-to-top button
+@import "components/back-to-top";
+
+// Services page components
+@import "components/services";
+
+// Error page components
+@import "components/error-page";
+
+// Enhanced interactive components (modals, tooltips, etc.)
+@import "components/enhancements";

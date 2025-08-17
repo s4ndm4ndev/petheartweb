@@ -1,0 +1,125 @@
+{{ define "main" }}
+<!-- Doctor Hero Section -->
+<section class="doctor-hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">{{ .Title }}</h1>
+            {{ if .Params.subtitle }}
+            <p class="hero-subtitle">{{ .Params.subtitle }}</p>
+            {{ end }}
+        </div>
+        <div class="hero-image">
+            <img src="/images/doctor/doctor.png" 
+                 alt="Dr. Chathuranga Anura Kumara, Veterinarian" 
+                 class="doctor-photo">
+        </div>
+    </div>
+</section>
+
+<main class="single-page">
+    <div class="container">
+        <article class="content-article">
+            <div class="article-content">
+                {{ .Content }}
+            </div>
+        </article>
+    </div>
+</main>
+
+<style>
+/* Doctor Hero Section - matching homepage hero style */
+.doctor-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #5fa8d3 100%);
+    padding: 4rem 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-hero .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.doctor-hero .hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.doctor-hero .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-hero .hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-hero .hero-image {
+    flex-shrink: 0;
+}
+
+.doctor-hero .doctor-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.doctor-hero .doctor-photo:hover {
+    transform: scale(1.05);
+}
+
+/* Mobile responsive for hero */
+@media (max-width: 768px) {
+    .doctor-hero .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .doctor-hero .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .doctor-hero .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .doctor-hero .doctor-photo {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doctor-hero {
+        padding: 3rem 0;
+    }
+    
+    .doctor-hero .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .doctor-hero .doctor-photo {
+        width: 140px;
+        height: 140px;
+    }
+}
+</style>
+{{ end }}

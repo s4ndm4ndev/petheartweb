@@ -1,0 +1,311 @@
+// Pet Heart Animal Clinic - Button Components
+// All button-related styles and variants
+
+// ============================================================================
+// BUTTON BASE STYLES
+// ============================================================================
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	border: 2px solid transparent;
+	min-width: 140px;
+
+	&:focus {
+		outline: 2px solid var(--accent-blue);
+		outline-offset: 2px;
+	}
+}
+
+// Primary button styles - consistent across themes
+.btn-primary {
+	background: var(--primary-blue);
+	color: white;
+	border: 2px solid var(--primary-blue);
+
+	&:hover {
+		background: var(--secondary-blue);
+		border-color: var(--secondary-blue);
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+	}
+}
+
+// Secondary button styles - default
+.btn-secondary {
+	background: transparent;
+	color: var(--primary-blue);
+	border: 2px solid var(--primary-blue);
+
+	&:hover {
+		background: var(--primary-blue);
+		color: white;
+		border-color: var(--primary-blue);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+	}
+}
+
+.btn-outline {
+	background: transparent;
+	color: var(--primary-blue);
+	border-color: var(--primary-blue);
+
+	&:hover {
+		background: var(--primary-blue);
+		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+	}
+}
+
+// ============================================================================
+// BUTTON VARIANTS
+// ============================================================================
+
+// Enhanced Button Variants
+.btn-large {
+	@extend .btn;
+	padding: 1rem 2rem;
+	font-size: 1.125rem;
+	min-width: 160px;
+}
+
+.btn-small {
+	@extend .btn;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	min-width: 100px;
+}
+
+.btn-icon {
+	@extend .btn;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	.icon {
+		font-size: 1.125em;
+		transition: transform 0.2s ease-in-out;
+	}
+
+	&:hover .icon {
+		transform: translateX(2px);
+	}
+}
+
+.btn-floating {
+	@extend .btn;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	min-width: auto;
+	box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+
+	&:hover {
+		transform: translateY(-2px) scale(1.05);
+		box-shadow: 0 6px 16px rgba(135, 206, 235, 0.4);
+	}
+}
+
+// ============================================================================
+// SPECIAL CONTEXT BUTTONS
+// ============================================================================
+
+// Hero section specific button overrides for better visibility
+.hero {
+	// Primary button in hero - use dark background for contrast
+	.btn-primary {
+		background: rgba(33, 37, 41, 0.9);
+		color: white;
+		border: 2px solid rgba(33, 37, 41, 0.9);
+
+		&:hover {
+			background: rgba(33, 37, 41, 1);
+			border-color: rgba(33, 37, 41, 1);
+			color: white;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	// Secondary button in hero - use white background for contrast
+	.btn-secondary {
+		background: rgba(255, 255, 255, 0.95);
+		color: #1e40af;
+		border: 2px solid rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+
+		&:hover {
+			background: white;
+			color: #1e40af;
+			border-color: white;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+		}
+	}
+}
+
+// Error page specific button styles
+.error-actions {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 2.5rem;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.75rem;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1rem;
+		transition: all 0.2s ease-in-out;
+		border: 2px solid transparent;
+		min-width: 160px;
+		justify-content: center;
+
+		&:focus {
+			outline: 2px solid var(--accent-blue);
+			outline-offset: 2px;
+		}
+
+		@media (max-width: 768px) {
+			width: 100%;
+			max-width: 280px;
+		}
+	}
+
+	.btn-primary {
+		background: var(--primary-blue);
+		color: white;
+		border-color: var(--primary-blue);
+
+		&:hover {
+			background: var(--secondary-blue);
+			border-color: var(--secondary-blue);
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+		}
+	}
+
+	.btn-secondary {
+		background: transparent;
+		color: var(--primary-blue);
+		border-color: var(--primary-blue);
+
+		&:hover {
+			background: var(--primary-blue);
+			color: white;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+		}
+	}
+}
+
+// Services CTA button
+.cta-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem 2rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+	text-decoration: none;
+	background: white;
+	color: var(--primary-blue);
+	border-radius: 0.75rem;
+	transition: all 0.3s ease-in-out;
+	border: 2px solid white;
+
+	&:hover {
+		background: var(--background);
+		transform: translateY(-2px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+	}
+
+	&:focus {
+		outline: 2px solid rgba(255, 255, 255, 0.5);
+		outline-offset: 2px;
+	}
+}
+
+// ============================================================================
+// ACCESSIBILITY & INTERACTION STATES
+// ============================================================================
+
+// Focus visible improvements
+.btn:focus-visible {
+	outline: 2px solid var(--primary-blue);
+	outline-offset: 2px;
+	border-radius: 0.25rem;
+}
+
+// High contrast mode enhancements
+@media (prefers-contrast: high) {
+	.btn {
+		border-width: 2px;
+		font-weight: 700;
+	}
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+	.btn:hover {
+		transform: none !important;
+	}
+
+	.btn-icon:hover .icon {
+		transform: none !important;
+	}
+}
+
+// ============================================================================
+// DARK MODE ADJUSTMENTS
+// ============================================================================
+
+[data-theme="dark"] {
+	.error-actions {
+		.btn-primary:hover,
+		.btn-secondary:hover {
+			box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+		}
+	}
+
+	.cta-button {
+		background: var(--background);
+		color: var(--primary-blue);
+
+		&:hover {
+			background: var(--surface);
+		}
+	}
+}
+
+// ============================================================================
+// PRINT STYLES
+// ============================================================================
+
+@media print {
+	.btn {
+		display: none !important;
+	}
+}

@@ -74,7 +74,7 @@ node scripts/verify-deployment.js --site-url=https://your-site.pages.dev
 
 The verification script checks:
 - ✅ All pages load correctly (200 status)
-- ✅ Pet Heart branding is present
+- ✅ Pet Heart Animal Clinic branding is present
 - ✅ Theme toggle functionality works
 - ✅ Response times are acceptable
 - ✅ Required files (sitemap, robots.txt) exist

@@ -346,7 +346,7 @@ class FunctionalityValidator {
           this.pass(`${file} includes doctor information`);
         }
 
-        if (content.includes('Pet Heart')) {
+        if (content.includes('Pet Heart Animal Clinic')) {
           this.pass(`${file} includes clinic branding`);
         } else {
           this.warn(`${file} may be missing clinic branding`);

@@ -1,0 +1,149 @@
+// Pet Heart Animal Clinic - Back to Top Component
+// Back-to-top button styling and behavior
+
+// ============================================================================
+// BACK TO TOP BUTTON
+// ============================================================================
+
+.back-to-top-btn {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	background: var(--primary-blue);
+	border: 2px solid var(--primary-blue);
+	border-radius: 50%;
+	cursor: pointer;
+	color: white;
+	box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+	transition: all 0.3s ease-in-out;
+
+	// Initially hidden
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(20px) scale(0.8);
+
+	// Remove default button styles
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	// Visible state
+	&.visible {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0) scale(1);
+	}
+
+	// Hover effects
+	&:hover {
+		background: var(--secondary-blue);
+		border-color: var(--secondary-blue);
+		transform: translateY(-2px) scale(1.05);
+		box-shadow: 0 6px 16px rgba(135, 206, 235, 0.4);
+	}
+
+	// Active state
+	&:active {
+		transform: translateY(-1px) scale(1.02);
+		box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+	}
+
+	// Focus styles for accessibility
+	&:focus {
+		outline: 2px solid var(--accent-blue);
+		outline-offset: 2px;
+	}
+
+	// Icon styling
+	.back-to-top-icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		transition: transform 0.2s ease-in-out;
+	}
+
+	// Icon animation on hover
+	&:hover .back-to-top-icon {
+		transform: translateY(-2px);
+	}
+
+	// Screen reader text
+	.back-to-top-text {
+		@extend .sr-only;
+	}
+}
+
+// ============================================================================
+// DARK MODE SPECIFIC STYLES
+// ============================================================================
+
+[data-theme="dark"] .back-to-top-btn {
+	background: var(--primary-blue);
+	border-color: var(--primary-blue);
+	color: var(--background);
+	box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+
+	&:hover {
+		background: var(--secondary-blue);
+		border-color: var(--secondary-blue);
+		box-shadow: 0 6px 16px rgba(135, 206, 235, 0.5);
+	}
+
+	&:active {
+		box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+	}
+
+	&:focus {
+		outline-color: var(--accent-blue);
+	}
+}
+
+// ============================================================================
+// MOBILE RESPONSIVE ADJUSTMENTS
+// ============================================================================
+
+@media (max-width: 768px) {
+	.back-to-top-btn {
+		bottom: 1.5rem;
+		right: 1.5rem;
+		width: 2.75rem;
+		height: 2.75rem;
+
+		.back-to-top-icon {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+	}
+}
+
+// ============================================================================
+// REDUCED MOTION PREFERENCE
+// ============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+	.back-to-top-btn {
+		transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+
+		&:hover {
+			transform: none;
+		}
+
+		&.visible {
+			transform: none;
+		}
+
+		.back-to-top-icon {
+			transition: none;
+		}
+
+		&:hover .back-to-top-icon {
+			transform: none;
+		}
+	}
+}

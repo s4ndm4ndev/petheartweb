@@ -103,7 +103,7 @@ const dom = new JSDOM(`
               <p>Caring for your beloved pets</p>
             </div>
             <div class="hero-image">
-              <img src="/images/logo/logo.png" alt="Pet Heart Logo">
+              <img src="/images/logo/logo.png" alt="Pet Heart Animal Clinic Logo">
             </div>
           </div>
         </section>

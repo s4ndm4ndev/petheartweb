@@ -1,20 +1,10 @@
 # Cloudflare Pages configuration for Pet Heart Animal Clinic
-name = "pet-heart-website"
-compatibility_date = "2024-01-01"
+name = 'petheartweb'
+compatibility_date = '2025-01-01'
 
-[env.production]
-# Production environment variables
-HUGO_VERSION = "0.120.4"
-HUGO_ENV = "production"
-NODE_VERSION = "18"
+[build]
+command = './build.sh'
 
-[env.preview]
-# Preview/staging environment variables
-HUGO_VERSION = "0.120.4"
-HUGO_ENV = "development"
-NODE_VERSION = "18"
-
-# Build configuration
-[[pages_build_output_dir]]
-# Hugo builds to the 'public' directory by default
-output_dir = "public"
+[assets]
+directory = './public'
+not_found_handling = '404-page'

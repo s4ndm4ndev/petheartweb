@@ -1,0 +1,160 @@
+{{ define "main" }}
+<main class="single-page">
+    <div class="container">
+        <article class="content-article">
+            <header class="article-header">
+                <h1 class="article-title">{{ .Title }}</h1>
+                {{ if .Params.subtitle }}
+                <p class="article-subtitle">{{ .Params.subtitle }}</p>
+                {{ end }}
+            </header>
+
+            <div class="article-content">
+                <h1>Contact Pet Heart Animal Clinic</h1>
+
+                <p><strong>Phone:</strong> {{ .Site.Params.phone }} | <strong>Email:</strong> {{ .Site.Params.email }}</p>
+
+                <p><strong>Address:</strong> {{ .Site.Params.address }}</p>
+
+                <p><strong>Hours:</strong> Mon-Fri 6:00-9:00 PM | Sat-Sun 4:00-9:00 PM</p>
+
+                <hr>
+
+                <h2>Schedule an Appointment</h2>
+
+                <p>Use our convenient online form below:</p>
+
+                <div class="appointment-form-container">
+                  <form class="appointment-form" action="mailto:{{ .Site.Params.email }}" method="post" enctype="text/plain">
+                    <div class="form-header">
+                      <h3>📅 Book Your Pet's Appointment</h3>
+                      <p>Fill out the form below and we'll get back to you soon!</p>
+                    </div>
+                    
+                <div class="form-grid">
+                <div class="form-group">
+                <label for="owner-name">Owner's Name *</label>
+                <input type="text" id="owner-name" name="Owner Name" required placeholder="Your full name">
+                </div>
+
+                <div class="form-group">
+                <label for="contact-number">Contact Number *</label>
+                <input type="tel" id="contact-number" name="Contact Number" required placeholder="{{ .Site.Params.phone }}">
+                </div>
+
+                <div class="form-group">
+                <label for="pet-type">Pet Type *</label>
+                <select id="pet-type" name="Pet Type" required>
+                <option value="">Select your pet type</option>
+                <option value="Dog">🐕 Dog</option>
+                <option value="Cat">🐱 Cat</option>
+                <option value="Other">🐾 Other</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="appointment-date">Preferred Date *</label>
+                <input type="date" id="appointment-date" name="Preferred Date" required>
+                </div>
+                </div>
+
+                <div class="form-group full-width">
+                <label for="additional-notes">Additional Notes (Optional)</label>
+                <textarea id="additional-notes" name="Additional Notes" rows="3" placeholder="Tell us about your pet's needs or any concerns..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">📋Schedule Appointment</button>
+                  </form>
+                </div>
+
+                <h2>📋 What to Bring to Your Appointment</h2>
+
+                <p>Please bring the following documents and information:</p>
+
+                <ul>
+                <li><strong>Vaccination records</strong> - Current vaccination certificates</li>
+                <li><strong>Previous medical records</strong> - Any prior veterinary records or test results</li>
+                <li><strong>Current medications list</strong> - All medications your pet is currently taking</li>
+                <li><strong>Insurance information</strong> - Pet insurance cards or policy details (if applicable)</li>
+                <li><strong>List of questions or concerns</strong> - Any specific issues you'd like to discuss</li>
+                </ul>
+
+                <hr>
+
+                <p><em>At Pet Heart Animal Clinic, every pet receives the love, care, and attention they deserve.</em></p>
+
+                <!-- Structured Data for Local Business -->
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "VeterinaryCare",
+                  "name": "Pet Heart Animal Clinic",
+                  "description": "Caring veterinary services for dogs, cats, and other animals",
+                  "url": "https://petheart-clinic.pages.dev",
+                  "telephone": "{{ .Site.Params.phone }}",
+                  "email": "{{ .Site.Params.email }}",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "{{ .Site.Params.address }}",
+                    "addressLocality": "{{ .Site.Params.address }}",
+                    "addressRegion": "Western Province",
+                    "postalCode": "",
+                    "addressCountry": "Sri Lanka"
+                  },
+                  "openingHours": [
+                    "Mo-Fr 18:00-21:00",
+                    "Sa-Su 16:00-21:00"
+                  ],
+                  "priceRange": "$$",
+                  "founder": {
+                    "@type": "Person",
+                    "name": "Dr. Chathuranga Anura Kumara",
+                    "jobTitle": "Veterinarian"
+                  },
+                  "areaServed": {
+                    "@type": "City",
+                    "name": "Colombo"
+                  },
+                  "serviceType": "Veterinary Care",
+                  "medicalSpecialty": ["Small Animal Medicine", "Preventive Care"],
+                  "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Veterinary Services",
+                    "itemListElement": [
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Routine Health Exams"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Vaccinations"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Dental Care"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Surgery"
+                        }
+                      }
+                    ]
+                  }
+                }
+                </script>
+            </div>
+        </article>
+    </div>
+</main>
+{{ end }}

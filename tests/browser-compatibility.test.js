@@ -314,7 +314,7 @@ describe('Browser Compatibility', () => {
 
       // Test template literals
       expect(() => {
-        const name = 'Pet Heart';
+        const name = 'Pet Heart Animal Clinic';
         return `Welcome to ${name}`;
       }).not.toThrow();
     });
