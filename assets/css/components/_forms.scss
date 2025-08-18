@@ -198,6 +198,88 @@
 	padding-right: 2.5rem;
 }
 
+// ============================================================================
+// LOCATION ACTIONS (GOOGLE MAPS INTEGRATION)
+// ============================================================================
+
+.location-actions {
+	display: flex;
+	gap: 1rem;
+	margin: 1.5rem 0;
+	flex-wrap: wrap;
+
+	.maps-link, .directions-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 500;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+		border: 2px solid transparent;
+		min-width: auto;
+		white-space: nowrap;
+
+		&:focus {
+			outline: 2px solid var(--accent-blue);
+			outline-offset: 2px;
+		}
+
+		.maps-icon {
+			flex-shrink: 0;
+		}
+	}
+
+	.maps-link {
+		background: var(--primary-blue);
+		color: white;
+		border-color: var(--primary-blue);
+
+		&:hover {
+			background: var(--accent-blue);
+			border-color: var(--accent-blue);
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(135, 206, 235, 0.3);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+
+	.directions-link {
+		background: transparent;
+		color: var(--primary-blue);
+		border-color: var(--primary-blue);
+
+		&:hover {
+			background: var(--primary-blue);
+			color: white;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(135, 206, 235, 0.2);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+
+	// Dark theme support
+	[data-theme="dark"] & {
+		.directions-link {
+			color: var(--primary-blue);
+			border-color: var(--primary-blue);
+			
+			&:hover {
+				background: var(--primary-blue);
+				color: var(--bg-color);
+			}
+		}
+	}
+}
+
 // Mobile responsiveness
 @media (max-width: 768px) {
 	.appointment-form-container {
@@ -216,5 +298,15 @@
 
 	.form-header h3 {
 		font-size: 1.3rem;
+	}
+
+	.location-actions {
+		flex-direction: column;
+		gap: 0.75rem;
+
+		.maps-link, .directions-link {
+			justify-content: center;
+			width: 100%;
+		}
 	}
 }

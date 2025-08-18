@@ -15,6 +15,27 @@
                 <p><strong>Phone:</strong> {{ .Site.Params.phone }} | <strong>Email:</strong> {{ .Site.Params.email }}</p>
 
                 <p><strong>Address:</strong> {{ .Site.Params.address }}</p>
+                
+                <div class="location-actions">
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ .Site.Params.latitude }},{{ .Site.Params.longitude }}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="maps-link btn-primary"
+                       aria-label="View Pet Heart Animal Clinic location on Google Maps">
+                        <svg class="maps-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M21 10C21 17 12 23 12 23S3 17 3 10A9 9 0 0 1 12 1A9 9 0 0 1 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        📍 View on Google Maps
+                    </a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination={{ .Site.Params.latitude }},{{ .Site.Params.longitude }}" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="directions-link btn-secondary"
+                       aria-label="Get directions to Pet Heart Animal Clinic">
+                        🧭 Get Directions
+                    </a>
+                </div>
 
                 <p><strong>Hours:</strong> Mon-Fri 6:00-9:00 PM | Sat-Sun 4:00-9:00 PM</p>
 
