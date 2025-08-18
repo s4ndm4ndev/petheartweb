@@ -6,6 +6,9 @@
 # Kiro files
 .kiro/
 
+# Serena files
+.serena/
+
 # Development files
 CLAUDE.md
 .DS_Store
