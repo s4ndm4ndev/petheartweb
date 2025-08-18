@@ -27,7 +27,7 @@
     "usage_model": "standard"
   },
   "custom_domains": [
-    "petheart-clinic.pages.dev"
+    "petheartweb.swiftscripters.workers.dev"
   ],
   "redirects": [
     {

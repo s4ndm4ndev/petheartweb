@@ -24,7 +24,7 @@ if [ -n "$CF_PAGES_URL" ]; then
     echo "🌐 Using Cloudflare Pages URL: $BASE_URL"
 elif [ -n "$CF_PAGES_BRANCH" ] && [ "$CF_PAGES_BRANCH" = "master" ]; then
     # Production deployment - use your custom domain if configured
-    BASE_URL="${HUGO_BASEURL:-https://petheart.pages.dev}"
+    BASE_URL="${HUGO_BASEURL:-https://petheartweb.swiftscripters.workers.dev/}"
     echo "🌐 Production deployment, base URL: $BASE_URL"
 else
     # Preview deployment or local build

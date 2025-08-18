@@ -226,7 +226,7 @@ For detailed development information, see [CLAUDE.md](CLAUDE.md) which contains:
 
 ## 📞 Contact & Support
 
-For questions about Pet Heart Animal Clinic services, visit the [Contact page](https://petheartweb.pages.dev/contact/) or call the clinic directly.
+For questions about Pet Heart Animal Clinic services, visit the [Contact page](https://petheartweb.swiftscripters.workers.dev/contact/) or call the clinic directly.
 
 For technical issues with the website, please refer to the development documentation in CLAUDE.md.
 
