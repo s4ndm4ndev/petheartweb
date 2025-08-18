@@ -1,98 +1,69 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Pet Heart Animal Clinic - Optimized Cloudflare Pages Build Script
-# Enhanced for 2025 best practices with dynamic base URL and environment detection
+#------------------------------------------------------------------------------
+# @file
+# Builds a Hugo site hosted on a Cloudflare Worker.
+#
+# The Cloudflare Worker automatically installs Node.js dependencies.
+#------------------------------------------------------------------------------
 
-set -e
+main() {
 
-echo "🏥 Building Pet Heart Animal Clinic website..."
+  DART_SASS_VERSION=1.90.0
+  GO_VERSION=1.24.5
+  HUGO_VERSION=0.148.2
+  NODE_VERSION=22.18.0
 
-# Check if Hugo is available
-if ! command -v hugo &> /dev/null; then
-    echo "❌ Hugo is not installed or not in PATH"
-    exit 1
-fi
+  export TZ=Europe/Oslo
 
-# Set Hugo version for consistency (Cloudflare Pages compatibility)
-export HUGO_VERSION=${HUGO_VERSION:-"0.143.1"}
-echo "📦 Hugo version: $(hugo version)"
+  # Install Dart Sass
+  echo "Installing Dart Sass ${DART_SASS_VERSION}..."
+  curl -sLJO "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+  tar -C "${HOME}/.local" -xf "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+  rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
+  export PATH="${HOME}/.local/dart-sass:${PATH}"
 
-# Dynamic base URL configuration for Cloudflare Pages
-# CF_PAGES_URL is available in Cloudflare Pages environment
-if [ -n "$CF_PAGES_URL" ]; then
-    BASE_URL="$CF_PAGES_URL"
-    echo "🌐 Using Cloudflare Pages URL: $BASE_URL"
-elif [ -n "$CF_PAGES_BRANCH" ] && [ "$CF_PAGES_BRANCH" = "master" ]; then
-    # Production deployment - use your custom domain if configured
-    BASE_URL="${HUGO_BASEURL:-https://petheartweb.swiftscripters.workers.dev/}"
-    echo "🌐 Production deployment, base URL: $BASE_URL"
-else
-    # Preview deployment or local build
-    BASE_URL="https://preview.pages.dev"
-    echo "🌐 Preview deployment, base URL: $BASE_URL"
-fi
+  # Install Go
+  echo "Installing Go ${GO_VERSION}..."
+  curl -sLJO "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz"
+  tar -C "${HOME}/.local" -xf "go${GO_VERSION}.linux-amd64.tar.gz"
+  rm "go${GO_VERSION}.linux-amd64.tar.gz"
+  export PATH="${HOME}/.local/go/bin:${PATH}"
 
-# Clean previous build with verbose output
-echo "🧹 Cleaning previous build..."
-rm -rf public/
-rm -rf resources/_gen/
+  # Install Hugo
+  echo "Installing Hugo ${HUGO_VERSION}..."
+  curl -sLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+  mkdir "${HOME}/.local/hugo"
+  tar -C "${HOME}/.local/hugo" -xf "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+  rm "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+  export PATH="${HOME}/.local/hugo:${PATH}"
 
-# Set Hugo environment
-export HUGO_ENV=${HUGO_ENV:-"production"}
-echo "🔧 Hugo environment: $HUGO_ENV"
+  # Install Node.js
+  echo "Installing Node.js ${NODE_VERSION}..."
+  curl -sLJO "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz"
+  tar -C "${HOME}/.local" -xf "node-v${NODE_VERSION}-linux-x64.tar.xz"
+  rm "node-v${NODE_VERSION}-linux-x64.tar.xz"
+  export PATH="${HOME}/.local/node-v${NODE_VERSION}-linux-x64/bin:${PATH}"
 
-# Build with optimized flags for Cloudflare Pages
-echo "🔨 Building site with optimization..."
-hugo \
-    --minify \
-    --gc \
-    --cleanDestinationDir \
-    --baseURL="$BASE_URL" \
-    --environment="$HUGO_ENV"
+  # Verify installations
+  echo "Verifying installations..."
+  echo Dart Sass: "$(sass --version)"
+  echo Go: "$(go version)"
+  echo Hugo: "$(hugo version)"
+  echo Node.js: "$(node --version)"
 
-# Post-build optimizations
-echo "⚡ Running post-build optimizations..."
+  # Configure Git
+  echo "Configuring Git..."
+  git config core.quotepath false
+  if [ "$(git rev-parse --is-shallow-repository)" = "true" ]; then
+    git fetch --unshallow
+  fi
 
-# Generate additional SEO files if not present
-if [ ! -f "public/robots.txt" ]; then
-    echo "🤖 Generating robots.txt..."
-    cat > public/robots.txt << EOF
-User-agent: *
-Allow: /
-Sitemap: $BASE_URL/sitemap.xml
-EOF
-fi
+  # Build the site
+  echo "Building the site..."
+  hugo --gc --minify
 
-# Verify critical files exist
-CRITICAL_FILES=("index.html" "sitemap.xml" "404.html")
-for file in "${CRITICAL_FILES[@]}"; do
-    if [ ! -f "public/$file" ]; then
-        echo "❌ Critical file missing: $file"
-        exit 1
-    fi
-done
+}
 
-# Build verification and statistics
-if [ -d "public" ] && [ "$(ls -A public)" ]; then
-    echo "✅ Build completed successfully!"
-    echo "📊 Build statistics:"
-    echo "   - Total files: $(find public -type f | wc -l)"
-    echo "   - HTML files: $(find public -name "*.html" | wc -l)"
-    echo "   - CSS files: $(find public -name "*.css" | wc -l)"
-    echo "   - JS files: $(find public -name "*.js" | wc -l)"
-    echo "   - Images: $(find public \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.gif" -o -name "*.svg" -o -name "*.webp" \) | wc -l)"
-    
-    # Calculate total build size
-    BUILD_SIZE=$(du -sh public | cut -f1)
-    echo "   - Total size: $BUILD_SIZE"
-    
-    # Verify HTML structure
-    HTML_COUNT=$(find public -name "*.html" -exec grep -l "<html" {} \; | wc -l)
-    echo "   - Valid HTML pages: $HTML_COUNT"
-else
-    echo "❌ Build failed - no output generated"
-    exit 1
-fi
-
-echo "🚀 Ready for deployment to Cloudflare Pages!"
-echo "🌐 Base URL configured: $BASE_URL"
+set -euo pipefail
+main "$@"

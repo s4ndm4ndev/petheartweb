@@ -1,6 +1,6 @@
 # Cloudflare Pages configuration for Pet Heart Animal Clinic
 name = 'petheartweb'
-compatibility_date = '2025-01-01'
+compatibility_date = '2025-01-15'
 
 [build]
 command = './build.sh'

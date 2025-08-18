@@ -1,8 +1,10 @@
-baseURL = "https://petheartweb.swiftscripters.workers.dev/"
-languageCode = "en-us"
-title = "Pet Heart Animal Clinic"
-enableRobotsTXT = true
-enableGitInfo = false
+baseURL = 'https://petheartweb.swiftscripters.workers.dev'
+languageCode = 'en-us'
+title = 'Pet Heart Animal Clinic'
+
+# Build configuration
+publishDir = "public"
+enableGitInfo = true
 
 [params]
   description = "Caring veterinary services for dogs, cats, and other animals by Dr. Chathuranga Anura Kumara"
@@ -40,6 +42,12 @@ enableGitInfo = false
 
 [build]
   writeStats = true
+
+# Cloudflare Pages configuration
+[deployment]
+  [[deployment.targets]]
+    name = "cloudflare"
+    URL = "https://petheartweb.swiftscripters.workers.dev"
 
 [minify]
   disableCSS = false
