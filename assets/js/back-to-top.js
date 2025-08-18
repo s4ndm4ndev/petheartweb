@@ -8,13 +8,31 @@ class BackToTop {
     this.button = null;
     this.scrollThreshold = 300; // Show button after scrolling 300px
     this.isVisible = false;
+    this.initTimeout = null;
 
     this.init();
   }
 
   init() {
-    this.createButton();
-    this.bindEvents();
+    // Ensure DOM is fully loaded and try to find button
+    const tryInit = () => {
+      this.createButton();
+      if (this.button) {
+        this.bindEvents();
+        console.log('Back to top button initialized successfully');
+      } else {
+        // Retry if button not found
+        console.warn('Back to top button not found, retrying...');
+        this.initTimeout = setTimeout(tryInit, 100);
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+      // DOM already loaded, init immediately
+      tryInit();
+    }
   }
 
   createButton() {
@@ -25,14 +43,25 @@ class BackToTop {
       console.warn('Back to top button not found in DOM');
       return;
     }
+
+    // Ensure initial state
+    this.button.classList.remove('visible');
+    this.button.setAttribute('aria-hidden', 'true');
+    this.isVisible = false;
   }
 
   bindEvents() {
     if (!this.button) return;
 
+    // Clear any existing timeout
+    if (this.initTimeout) {
+      clearTimeout(this.initTimeout);
+      this.initTimeout = null;
+    }
+
     // Scroll event listener with throttling for performance
     let scrollTimeout;
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
@@ -40,7 +69,9 @@ class BackToTop {
       scrollTimeout = setTimeout(() => {
         this.handleScroll();
       }, 16); // ~60fps throttling
-    });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Click event for smooth scroll to top
     this.button.addEventListener('click', (e) => {
@@ -55,10 +86,13 @@ class BackToTop {
         this.scrollToTop();
       }
     });
+
+    // Initial scroll check in case page is already scrolled
+    this.handleScroll();
   }
 
   handleScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     if (scrollPosition > this.scrollThreshold && !this.isVisible) {
       this.showButton();
@@ -126,6 +160,13 @@ class BackToTop {
       setTimeout(() => {
         liveRegion.textContent = '';
       }, 1500);
+    }
+  }
+
+  // Cleanup method for potential memory leaks
+  destroy() {
+    if (this.initTimeout) {
+      clearTimeout(this.initTimeout);
     }
   }
 }
