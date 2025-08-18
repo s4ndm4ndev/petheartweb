@@ -48,8 +48,7 @@ hugo \
     --gc \
     --cleanDestinationDir \
     --baseURL="$BASE_URL" \
-    --environment="$HUGO_ENV" \
-    --verbose
+    --environment="$HUGO_ENV"
 
 # Post-build optimizations
 echo "⚡ Running post-build optimizations..."
